@@ -1,0 +1,9 @@
+<%= render :partial => 'gwt/base', :locals => {:resource => @resource, :popup => true, :metric => (@metric ? @metric.key : nil)} -%>
+<%= render :partial => 'gwt/resource_viewers' -%>
+
+<div id="accordion-panel"/>
+
+<script type="text/javascript">
+  // Always display title in popup mode
+  openAccordionItem('<%= url_for(params.merge({:display_title => 'true', :popup => 'true'})) -%>', this);
+</script>

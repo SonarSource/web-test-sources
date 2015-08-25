@@ -1,0 +1,48 @@
+<%
+  package_tangle_index=measure('package_tangle_index')
+  if package_tangle_index
+%>
+<table width="100%">
+  <tbody>
+    <tr>
+    <%
+      if package_tangle_index
+        package_cycles=measure('package_cycles')
+        package_feedback_edges=measure('package_feedback_edges')
+        package_tangles=measure('package_tangles')
+    %>
+      <td valign="top" width="50%">
+        <div class="dashbox">
+          <p class="title"><%= message('widget.package_design.package_tangle_index') -%></p>
+          <p>
+            <span class="big"><%= format_measure(package_tangle_index, :suffix => '', :default => '-', :url => url_for_drilldown('package_tangle_index')) -%></span> <%= dashboard_configuration.selected_period? ? format_variation(package_tangle_index) : trend_icon(package_tangle_index, :big => true) -%>
+          </p>
+          <% if package_cycles %>
+          <p>
+            > <%= format_measure(package_cycles, :suffix => message('widget.package_design.cycles.suffix'), :url => url_for_drilldown('package_cycles')) %> <%= dashboard_configuration.selected_period? ? format_variation(package_cycles) : trend_icon(package_cycles) -%>
+          </p>
+          <% end %>
+        </div>
+      </td>
+      <td valign="top" width="50%">
+        <% if package_feedback_edges || package_tangles %>
+        <div class="dashbox">
+          <p class="title"><%= message('widget.package_design.dependencies_to_cut') -%></p>
+          <p>
+            <%= format_measure(package_feedback_edges, :suffix => message('widget.package_design.between_packages.suffix'), :url => url_for_drilldown('package_feedback_edges')) %>
+            <%= dashboard_configuration.selected_period? ? format_variation(package_feedback_edges) : trend_icon(package_feedback_edges) -%>
+          </p>
+          <p>
+            <%= format_measure(package_tangles, :suffix => message('widget.package_design.between_files.suffix'), :url => url_for_drilldown('package_tangles')) %>
+            <%= dashboard_configuration.selected_period? ? format_variation(package_tangles) : trend_icon(package_tangles) -%>
+          </p>
+        </div>
+        <% end %>
+      </td>
+    <% end %>
+    </tr>
+  </tbody>
+</table>
+<%
+  end
+%>

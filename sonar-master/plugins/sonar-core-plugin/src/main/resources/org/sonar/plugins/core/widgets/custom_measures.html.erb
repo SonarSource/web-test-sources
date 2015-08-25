@@ -1,0 +1,30 @@
+<%
+   measures=[]
+   (1..10).each do |index|
+     metric=widget_properties["metric#{index}"]
+     m=(metric ? measure(metric) : nil)
+     measures << m if m
+   end
+   unless measures.empty?
+%>
+
+  <table class="width100">
+    <tr>
+      <td width="100%">
+        <%
+           measures.each do |measure|
+        %>
+          <div class="dashbox">
+            <p class="title"><%= measure.metric.short_name -%></p>
+            <p>
+              <span class="big"><%= format_measure(measure, :url => url_for_drilldown(measure)) -%></span>
+              <%= dashboard_configuration.selected_period? ? format_variation(measure) : trend_icon(measure) -%>
+            </p>
+          </div>
+        <%
+           end
+        %>
+      </td>
+    </tr>
+  </table>
+<% end %>

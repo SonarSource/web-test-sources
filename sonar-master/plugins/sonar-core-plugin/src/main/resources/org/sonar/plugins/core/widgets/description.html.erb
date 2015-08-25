@@ -1,0 +1,54 @@
+<div class="widget box">
+  <% if @project.description.present? %>
+    <p class="marginbottom10"><%= h @project.description %></p>
+  <% end %>
+
+  <table class="width100 marginbottom10">
+    <tbody>
+    <tr>
+      <td width="25%"><%= message('widget.description.key') -%>: </td>
+      <td width="75%" id="resource_key"><%= h @project.key -%></td>
+    </tr>
+    <% if @project.language %>
+    <tr>
+      <td><%= message('widget.description.language') -%>: </td>
+      <td id="resource_language"><%= Api::Utils.language_name(@project.language) -%></td>
+    </tr>
+    <% end %>
+    <%
+      profile_measure=@snapshot.measure(Metric::PROFILE)
+      if profile_measure
+    %>
+    <tr>
+      <td><%= message('widget.description.profile') -%>:</td>
+      <td><span id="resource_profile"><%= link_to profile_measure.data, {:controller => '/rules_configuration', :action => 'index', :id => profile_measure.value.to_i}, :id => 'profile_link' -%></span> (<%= message('widget.description.profile_version_x', :params => format_measure('profile_version', :default => '1')) -%>)</td>
+    </tr>
+    <% end %>
+    <% if Project::SCOPE_SET==@project.scope %>
+    <tr>
+      <td><%= message('widget.description.alerts') -%>: </td>
+      <td><%= image_tag 'rss-12x12.png' -%> <a href="<%= url_for :controller => :feeds, :action => 'project', :id => @project.key, :category => EventCategory::KEY_ALERT -%>" class="action"><%= message('widget.description.alerts_rss_feed') -%></a></td>
+    </tr>
+    <% end %>
+    <% unless @project.project_links.empty? %>
+      <tr>
+        <td valign="top"><%= message('widget.description.links') -%>: </td>
+        <td id="resource_links">
+        <% @project.project_links.sort.each do |link| %>
+          <div>
+          <% if link.href.starts_with?('http') %>
+            <%= link_to(image_tag(link.icon, :alt => link.name), link.href , :popup => true, :class => 'nolink') -%>
+            <%= link_to(h(link.name), link.href, :popup => true) -%>
+          <% else %>
+            <%= image_tag(link.icon, :alt => link.name) -%>
+            <a href="#" onclick="$('link_<%= link.id -%>').toggle();return false;"><%= h(link.name) -%></a>
+            <div id="link_<%= link.id -%>" style="padding-left: 20px; display:none"><%= h(link.href) -%></div>
+          <% end %>
+          </div>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="uTf-16"?>
+<!DOCTYPE html [
+<!ENTITY ent1 'foo'>
+<!ENTITY ent2 'foo<br/>'>
+<!ELEMENT html (head, body)>
+<!ATTLIST html xmlns CDATA #IMPLIED>
+<!ELEMENT head (title)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT body (p)>
+<!ATTLIST body onload CDATA #IMPLIED>
+<!ELEMENT p (#PCDATA|br)*>
+<!ELEMENT br EMPTY>
+<!ENTITY ent5 PUBLIC "entityURI" "entityFile" NDATA notation1>
+<!NOTATION notation1 PUBLIC "notation1File">
+]>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>test file</title>
+<script charset="utf-8" type="text/javascript" src="selfxhtml.js"/><script charset="UTF-8" type="text/javascript" src="documentgetxmlencoding03.js"/><script type='text/javascript'>function loadComplete() { startTest(); }</script></head><body onload="loadComplete()">
+<p>bar</p>
+</body>
+</html>

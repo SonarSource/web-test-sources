@@ -1,0 +1,47 @@
+<%
+   plans_select_box_id = "plans-#{params[:issue]}"
+   plans = Internal.issues.findOpenActionPlans(@issue_result.project(@issue).key())
+
+
+   if plans.empty?
+%>
+  <% if is_admin? %>
+    <span class="error"><%= message('issue.plan.error.plan_must_be_created_first_for_admin',
+                                    :params => ApplicationController.root_context + '/action_plans/index/' + @issue_result.project(@issue).key()) -%></span>
+  <% else %>
+    <span class="error"><%= message('issue.plan.error.plan_must_be_created_first_for_other') -%></span>
+  <% end %>
+  &nbsp;<%= link_to_function message('cancel'), 'closeIssueForm(this)' -%>
+<%
+   else
+     first_plan = plans[0]
+     plan_options = options_for_select(plans.map { |plan|
+       if plan.deadLine
+         label = "#{h plan.name} (#{format_date(plan.deadLine)})"
+       else
+         label = h plan.name
+       end
+       [label, plan.key]
+     }, first_plan.key)
+
+%>
+  <form method="POST">
+    <input type="hidden" name="issue" value="<%= params[:issue] -%>"/>
+    <input type="hidden" id="action-<%= plans_select_box_id %>" name="id" value="plan"/>
+
+    <%= dropdown_tag('plan', plan_options, {:show_search_box => false}, {:id => plans_select_box_id}) -%>
+
+    <input type="button" value="<%= message('issue.plan.submit') -%>" onclick="submitIssueForm(this)">
+    &nbsp;
+    <% if @issue.actionPlanKey %>
+      <%= image_tag 'sep12.png' -%>
+      &nbsp;
+      <input type="button" value="<%= message('issue.unplan.submit') -%>"
+             onclick="$j('#action-<%= plans_select_box_id %>').val('unplan'); $j('#<%= plans_select_box_id -%>').prop('disabled', false); submitIssueForm(this)">
+    <% end %>
+    <%= link_to_function message('cancel'), 'closeIssueForm(this)' -%>&nbsp;
+    <span class="loading hidden"></span>
+
+  </form>
+
+<% end %>
