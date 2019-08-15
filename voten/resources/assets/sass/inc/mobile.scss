@@ -1,0 +1,45 @@
+// only desktop
+@media (min-width: 768px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+// only mobile
+@media (max-width: 768px) {
+    .mobile-padding {
+        padding: 1em;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .tabs.is-fullwidth li {
+        font-size: 77%;
+    }
+
+    .v-contact-list li .channel-search-item-avatar,
+    .v-contact-list li a .channel-search-item-avatar {
+        flex-basis: 41px;
+        margin-right: 1em;
+    }
+
+    .v-contact-list li,
+    .v-contact-list li a {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #search .col-7 {
+        margin: auto 0;
+    }
+
+    .tooltip {
+        display: none !important;
+    }
+
+    .channel-suggestion .avatar {
+        flex-basis: 40px;
+        margin-right: 1em;
+    }
+}

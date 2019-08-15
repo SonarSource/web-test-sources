@@ -1,0 +1,172 @@
+.search {
+    font-size: 1em;
+}
+
+.form-toggle {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 1em 0.5em;
+}
+
+.vue-js-switch .v-switch-core[data-v-25adc6c0]:before {
+    margin-left: 0;
+}
+
+.radio {
+    margin-bottom: 0.5em;
+
+    label {
+        cursor: pointer;
+    }
+
+    input {
+        margin-right: 1em;
+        cursor: pointer;
+    }
+}
+
+.checkbox {
+    margin-bottom: 0.5em;
+
+    label {
+        cursor: pointer;
+    }
+
+    input {
+        margin-right: 1em;
+        cursor: pointer;
+    }
+}
+
+//////////////////////////
+// NewSubmission.vue
+//////////////////////////
+#new-submission {
+    position: relative;
+}
+
+.opacity-fade {
+    opacity: 0.6;
+}
+
+.form-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+}
+
+.form-loader .v-moon1 {
+    height: 60px !important;
+    width: 60px !important;
+}
+
+.form-loader .v-moon2 {
+    height: 5.28571px !important;
+    width: 5.28571px !important;
+    border-radius: 100% !important;
+    top: 25.8571px !important;
+    opacity: 1 !important;
+    background-color: #333 !important;
+}
+
+.form-loader .v-moon3 {
+    height: 60px !important;
+    width: 60px !important;
+    opacity: 0.2 !important;
+    border: 5.71429px solid #000 !important;
+}
+
+//////////////////////////
+// end NewSubmission.vue
+//////////////////////////
+
+.fixed-comment-form-wrapper {
+    padding: 0 1em;
+}
+
+.comment-form-guide {
+    margin: 0.5em 0;
+    color: #717577;
+    font-size: 74%;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#comment-form {
+    .editing-comment-wrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+
+        .close {
+            border: 2px solid #e7e7e7;
+            background: #fefefe;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            i {
+                color: #e7e7e7;
+                font-size: 14px;
+            }
+        }
+
+        .editing-comment-previous {
+            padding: 0 1em;
+            border-left: 4px solid $primary-color;
+            margin-left: 1em;
+            flex: 1;
+
+            .title {
+                margin: 0;
+                color: $primary-color;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            .text {
+                font-size: 13px;
+                color: #565656;
+            }
+        }
+    }
+}
+
+// el-select
+.el-select,
+.el-select .el-input {
+    width: 100%;
+}
+
+// el-form
+.el-form--label-top .el-form-item__label {
+    padding: 0 0 0px 0;
+    font-weight: bold;
+}
+
+.el-form-item .el-alert {
+    line-height: initial;
+    margin-top: 0.5em;
+}
+
+// el-dropdown
+.el-icon-more-outline {
+    cursor: pointer;
+}
+
+.el-dropdown {
+    i {
+        cursor: pointer;
+    }
+}
+
+.el-dropdown-link {
+    cursor: pointer;
+}

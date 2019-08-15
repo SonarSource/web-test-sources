@@ -1,0 +1,90 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=7.1.13",
+        "algolia/algoliasearch-client-php": "^2.2",
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "doctrine/dbal": "^2.5",
+        "embed/embed": "3.*",
+        "guzzlehttp/guzzle": "^6.3",
+        "intervention/image": "^2.4",
+        "jacobbennett/laravel-http2serverpush": "^2.0",
+        "laravel/framework": "5.8.*",
+        "laravel/helpers": "^1.0",
+        "laravel/horizon": "^3.0",
+        "laravel/passport": "^7.0",
+        "laravel/scout": "7.*",
+        "laravel/socialite": "^4.0",
+        "laravel/tinker": "^1.0",
+        "pbmedia/laravel-ffmpeg": "^4.0",
+        "predis/predis": "^1.1",
+        "pusher/pusher-php-server": "^3.4",
+        "sentry/sentry": "^2.0",
+        "sentry/sentry-laravel": "^1.0.0",
+        "whichbrowser/parser": "^2.0",
+        "zachleigh/laravel-vue-generators": "^0.2.1"
+    },
+    "require-dev": {
+        "filp/whoops": "~2.3.1",
+        "fzaninotto/faker": "~1.8",
+        "mockery/mockery": "1.2.*",
+        "nunomaduro/collision": "^3.0.1",
+        "phpunit/phpunit": "^7.5",
+        "symfony/css-selector": "4.2.*",
+        "symfony/dom-crawler": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "files": [
+            "app/Http/helpers.php"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "tests/utilities/functions.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
